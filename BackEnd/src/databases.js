@@ -1,15 +1,33 @@
-const mongoose = require("mongoose");
+'use strict'
 
-const URI = process.env.MONGODB_URI
-  ? process.env.MONGODB_URI
-  : "mongodb://localhost/solutic4";
+const { MongoClient } = require('mongodb')
+const {
+  DB_USER,
+  DB_PASSWD,
+  DB_HOST,
+  DB_PORT,
+  DB_NAME
+} = process.env
 
-mongoose.connect(URI, {
-  useNewUrlParser: true,
-});
+const mongoUrl = `mongodb://localhost/solutic4`
+let connection
 
-const connection = mongoose.connection;
+async function connectDB () {
+  if (connection) return connection
 
-connection.once("open", () => {
-  console.log("DB esta Conectada... ");
-});
+  let client
+  try {
+    client = await MongoClient.connect(mongoUrl, {
+      useNewUrlParser: true
+    })
+    connection = client.db(DB_NAME)
+  } catch (error) {
+    console.error('Could not connect to db', mongoUrl, error)
+    process.exit(1)
+  }
+
+  return connection
+}
+
+module.exports = connectDB
+

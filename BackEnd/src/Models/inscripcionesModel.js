@@ -11,7 +11,7 @@ const inscripcionSchema = new Schema({
     required: true,
   },
   estado: String,
-  fechaIngreso: Date,
-  fechaEgreso: Date,
+  fechaIngreso: String,
+  fechaEgreso: String,
 });
 module.exports= model("Inscripcion", inscripcionSchema);

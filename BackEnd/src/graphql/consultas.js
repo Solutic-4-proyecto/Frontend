@@ -1,6 +1,9 @@
-const connectDb = require('../databases')
-const { ObjectId } = require('mongodb')
-const errorHandler = require('./errorHandler')
+'use strict'
+const connectDb = require('../databases');
+const { ObjectId } = require('mongodb');
+const errorHandler = require('./errorHandler');
+
+
 
 module.exports = {
 
@@ -8,8 +11,10 @@ module.exports = {
         let db
         let usuarios = []
         try {
-            db = await connectDb()
-            usuarios = await db.collection('usuarios').find().toArray()
+            //db = await connectDb()
+            db=await connectDb()
+           // usuarios =collection('usuarios').find().toArray()// await db.collection('usuarios').find().toArray()
+           usuarios=await db.collection('usuarios').find().toArray()
         } catch (error) {
             errorHandler(error)
         }

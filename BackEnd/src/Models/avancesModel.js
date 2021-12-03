@@ -7,7 +7,7 @@ const avancesSchema = new Schema({
     trim: true,
     unique: true,
   },
-  fechaAvance: Date,
+  fechaAvance: String,
   descripcion: {
     type: String,
     required: true,

@@ -39,13 +39,14 @@ app.use('/api', graphqlHTTP({
 
 
 
+/*
 
 //ROUTES
-/*app.use("/api/usuarios",require('./Routes/usuariosRoutes'));
+app.use("/api/usuarios",require('./Routes/usuariosRoutes'));
 app.use("/api/proyectos", require('./Routes/proyectosRoutes'));
 app.use("/api/inscripciones", require('./Routes/inscripcionesRoutes'));
-app.use("/api/avances", require('./Routes/avancesRoutes'));*/
-
+app.use("/api/avances", require('./Routes/avancesRoutes'));
+*/
 
 //CARGAR EL GRAPHQL
 /*app.use(

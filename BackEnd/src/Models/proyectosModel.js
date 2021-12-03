@@ -23,8 +23,8 @@ const proyectosSchema = new Schema({
     trim: true,
   },
   presupuesto: Number,
-  fechaInicio: Date,
-  fechaTerminacion: Date,
+  fechaInicio: String,
+  fechaTerminacion: String,
   identificacionLider: {
     type: String,
     required: true,
