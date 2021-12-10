@@ -1,8 +1,7 @@
-
-
-const connectDB = require('../databases')
-const { ObjectId } = require('mongodb')
-const errorHandler = require('./errorHandler')
+'use strict'
+const connectDb = require('../databases');
+const { ObjectId } = require('mongodb');
+const errorHandler = require('./errorHandler');
 
 module.exports = {
     createUsuario: async (root, { input }) => {

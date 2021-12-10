@@ -8,7 +8,7 @@ const { graphqlHTTP } = require('express-graphql');
 const { readFileSync } = require('fs')
 const { join } = require('path')
 const resolvers = require('./graphql/resolvers');
-
+const gql = require('graphql-tag');
 
 const app = express();
 
@@ -39,14 +39,14 @@ app.use('/api', graphqlHTTP({
 
 
 
-/*
+
 
 //ROUTES
 app.use("/api/usuarios",require('./Routes/usuariosRoutes'));
 app.use("/api/proyectos", require('./Routes/proyectosRoutes'));
 app.use("/api/inscripciones", require('./Routes/inscripcionesRoutes'));
 app.use("/api/avances", require('./Routes/avancesRoutes'));
-*/
+
 
 //CARGAR EL GRAPHQL
 /*app.use(
