@@ -20,7 +20,7 @@ usuariosCtrl.createUsuarios = async (req, res) => {
       identificacion: identificacion,
       nombreCompleto: nombreCompleto,
       correo: correo,
-      contraseña: contraseña,
+      contrasena: contrasena,
       rol: rol,
       estado: estado,
     });
@@ -45,12 +45,12 @@ usuariosCtrl.getUsuarioID = async (req, res) => {
 };
 
 usuariosCtrl.updateUsuario = async (req, res) => {
-  const { identificacion, nombreCompleto, correo, contraseña, rol, estado } = req.body;
+  const { identificacion, nombreCompleto, correo, contrasena, rol, estado } = req.body;
   await Usuarios.findByIdAndUpdate(req.params.id, {
     identificacion: identificacion,
     nombreCompleto: nombreCompleto,
     correo: correo,
-    contraseña: contraseña,
+    contrasena: contrasena,
     rol: rol,
     estado: estado,
   });

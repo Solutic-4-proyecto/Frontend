@@ -16,7 +16,7 @@ const usuariosSchema = new Schema({
     required: true,
     trim: true,
   },
-  contraseña: {
+  contrasena: {
     type: String,
     required: true,
     trim: true,

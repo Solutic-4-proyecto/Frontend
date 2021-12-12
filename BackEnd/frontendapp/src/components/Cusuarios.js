@@ -1,18 +1,14 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { GET_USUARIOS } from "../consultas/qusuarios";
-import Usuarios from "./usuarios";
+
 import { Card, CardTitle, Table } from "reactstrap";
 
 
 export default function Cusuarios() {
   const { loading, data } = useQuery(GET_USUARIOS);
 
-  function renderUsuarios() {
-    return data.getUsuarios.map((usuario) => {
-      return <Usuarios key={usuario._id} id={usuario._id}></Usuarios>;
-    });
-  }
+
 
   return (
     <React.Fragment>
@@ -52,7 +48,7 @@ export default function Cusuarios() {
                       className="btn btn-primary"
                       onClick={() => this.deleteFacturas(usuario._id)}
                     >
-                      Editar
+                      Cambiar Estado
                     </button> {" "}
                     <button
                       className="btn btn-warning"

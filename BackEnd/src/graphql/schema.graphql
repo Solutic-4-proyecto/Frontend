@@ -18,27 +18,19 @@
         Iniciado
         En Desarrollo
         Terminado
-        Nulo
+        Null
     }
 
     enum EstadoInscripcion{
         Aceptada
         Rechazada
+        Pendiente
     }
 
 enum Level {
     Principiante
     Intermedio
     Avanzado
-}
-type Course{
-    _id: ID!
-    identificacion: String!
-    nombreCompleto: String!
-    correo: String!
-    contrasena: String!
-    rol: Rol!
-    estado:Estado!
 }
 
 type Usuarios{
@@ -103,6 +95,7 @@ type Query {
         getAvances: [Avances]
     "Devuelve un Avance por ID"
         getAvanceID (id: ID!): Avances
+
 
 }
 

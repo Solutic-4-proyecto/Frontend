@@ -33,6 +33,18 @@ module.exports = {
         return usuario
     },
 
+    /*getLogin: async (root, { correo,contrasena }) => {
+        let db
+        let login
+        try {
+            db = await connectDb()
+            login = await db.collection('usuarios').findOne({ correo: correo,contrasena:contrasena })
+        } catch (error) {
+            errorHandler(error)
+        }
+        return login
+    },*/
+
     getProyectos: async () => {
         let db
         let proyectos = []
@@ -69,6 +81,7 @@ module.exports = {
         return inscripciones
     },
 
+  
     getInscripcionID: async (root, { id }) => {
         let db
         let inscripcion
