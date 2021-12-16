@@ -1,42 +1,30 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Navbar, Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import useAuth from "../auth/useAuth";
+import routes from "../helpers/routes";
 
-export default class Navigation extends Component {
-    render() {
-        return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container">
-                    <Link className="navbar-brand" to="/">
-                        Solutic 4.0 APP
-                    </Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item active">
-                                <Link className="nav-link" to="/">Inicio </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/proyectos">Proyectos</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/inscripciones">Inscripciones</Link>
-                            </li>
+export default function Navigation() {
 
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/avances">Avances</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/usuarios">Usuarios</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/Login">Salir</Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        )
-    }
+  const { logout }=useAuth();
+  return (
+    <Navbar collapseOnSelect expand="lg" variant="dark" bg="dark">
+      <Navbar.Brand>Solutic 4.0 APP</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mx-auto">
+          <Nav.Link as={NavLink}to={routes.home}>Inicio</Nav.Link>
+          <Nav.Link as={NavLink}to={routes.proyectos}>Proyectos</Nav.Link>
+          <Nav.Link as={NavLink}to={routes.inscripciones}>Inscripciones</Nav.Link>
+          <Nav.Link as={NavLink}to={routes.avances}>Avances</Nav.Link>
+          <Nav.Link as={NavLink}to={routes.admin.usuarios}>Usuarios</Nav.Link>
+        </Nav>
+        <Nav>
+          <Nav.Link as= {NavLink}to={routes.login}>Iniciar Sesión</Nav.Link>
+          <Nav.Link as= {NavLink}to={routes.register}>Registrarse</Nav.Link>
+          <Nav.Link as= {NavLink}to={routes.account}>Mi Cuenta</Nav.Link>
+          <Nav.Link as= {NavLink} to={routes.home} onClick={logout}>Salir</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
 }

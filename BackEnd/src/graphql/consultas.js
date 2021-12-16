@@ -20,7 +20,7 @@ module.exports = {
         }
         return usuarios
     },
-
+    
     getUsuarioID: async (root, { id }) => {
         let db
         let usuario
@@ -32,7 +32,30 @@ module.exports = {
         }
         return usuario
     },
-
+    getUsuarioByCedula: async (root, { identificacion }) => {
+        let db
+        let usuariocedula
+        try {
+            db = await connectDb()
+            usuariocedula = await db.collection('usuarios').findOne({ identificacion: identificacion })
+        } catch (error) {
+            errorHandler(error)
+        }
+        return usuariocedula
+    },
+    getLogin:async (root, { correo,contrasena }) => {
+        let db
+        let login
+        try {
+            db = await connectDb()
+            login = await db.collection('usuarios').findOne({ correo: correo,contrasena:contrasena })
+        } catch (error) {
+            errorHandler(error)
+        }
+        return login
+    },
+    
+    
     /*getLogin: async (root, { correo,contrasena }) => {
         let db
         let login

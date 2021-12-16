@@ -12,5 +12,17 @@ query{
     }
   }`;
 
+  export const CREATE_USUARIOS=gql `
+  mutation($input: UsuariosInput!){
+    createUsuario(input:$input){
+      identificacion
+      nombreCompleto
+      correo
+      contrasena
+      rol
+      estado
+    }
+  }`
+
 
   

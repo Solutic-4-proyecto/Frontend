@@ -6,7 +6,7 @@ const errorHandler = require('./errorHandler');
 module.exports = {
     createUsuario: async (root, { input }) => {
         const defaults = {
-            estado: 'No Autorizado'
+            estado: 'No_Autorizado'
         }
         const newUsuario = Object.assign(defaults, input)
         let db

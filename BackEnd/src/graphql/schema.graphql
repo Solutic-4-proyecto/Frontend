@@ -80,6 +80,10 @@ type Query {
         getUsuarios: [Usuarios]
     "Devuelve un Usuario por ID"
         getUsuarioID (id: ID!): Usuarios
+    "Devuelve un Usuario por su Cédula"
+        getUsuarioByCedula(identificacion: String!): Usuarios
+    "Valida las credenciales del usuario para el ingreso"
+        getLogin(correo:String!,contrasena:String!):Usuarios
 
     "Devuelve Todos los Proyectos"
         getProyectos: [Proyectos]
