@@ -1,7 +1,6 @@
 import AppRoutes from "./AppRoutes";
 import AuthProvider from "./auth/AuthProvider";
 
-
 function App() {
   return (
     <div>
