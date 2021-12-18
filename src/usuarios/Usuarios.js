@@ -2,15 +2,29 @@ import React, { useState } from "react";
 
 import { Card, CardTitle, Table } from "reactstrap";
 import Spinner from "../compartidos/componentes/Spinner";
-import { useGetUsuarios } from "./custom-hooks";
+import { useGetUsuarios, useDeleteUsuario } from "./custom-hooks";
 import { FormularioUsuario } from "./FormularioUsuario";
+
+import "./usuarios-estilos.css";
 
 export default function Usuarios() {
   const { loading, data } = useGetUsuarios();
   const [nuevoUsuario, setNuevoUsuario] = useState(false);
+  const [editarUsuario, setEditarUsuario] = useState(false);
+  const [usuario, setUsuario] = useState();
+  const [set_id] = useDeleteUsuario();
 
-  const mostrarFormularioUsuario = () => {
-    setNuevoUsuario(!nuevoUsuario);
+  const mostrarFormularioUsuario = (usuario) => {
+    if (usuario) {
+      setEditarUsuario(!editarUsuario);
+      setUsuario(usuario);
+    } else {
+      setNuevoUsuario(!nuevoUsuario);
+    }
+  };
+
+  const eliminarUsuario = ({ _id }) => {
+    set_id(_id);
   };
 
   return (
@@ -34,51 +48,53 @@ export default function Usuarios() {
             </div>
           </div>
 
-          {nuevoUsuario && (
+          {(nuevoUsuario || editarUsuario) && (
             <div>
-              <FormularioUsuario />
+              <FormularioUsuario data={usuario} />
             </div>
           )}
-          {!nuevoUsuario && (
+          {!(nuevoUsuario && editarUsuario) && (
             <>
               <div>
                 <Card title color="primary" inverse>
                   <CardTitle className="text-center">LISTADO DE USUARIOS</CardTitle>
                 </Card>
               </div>
-              <Table dark>
-                <thead>
-                  <tr>
-                    <th>Identificación</th>
-                    <th>Nombre Completo</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
+              <div className="container-table">
+                <Table dark>
+                  <thead>
+                    <tr>
+                      <th>Identificación</th>
+                      <th>Nombre Completo</th>
+                      <th>Correo</th>
+                      <th>Rol</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {data &&
-                    data.getUsuarios.map((usuario) => (
-                      <tr key={usuario._id}>
-                        <td>{usuario.identificacion}</td>
-                        <td>{usuario.nombreCompleto}</td>
-                        <td>{usuario.correo}</td>
-                        <td>{usuario.rol}</td>
-                        <td>{usuario.estado}</td>
-                        <td>
-                          <button className="btn btn-primary" onClick={() => this.deleteFacturas(usuario._id)}>
-                            Cambiar Estado
-                          </button>{" "}
-                          <button className="btn btn-warning" onClick={() => this.deleteFacturas(usuario._id)}>
-                            Borrar
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
+                  <tbody>
+                    {data &&
+                      data.getUsuarios.map((usuario) => (
+                        <tr key={usuario._id}>
+                          <td>{usuario.identificacion}</td>
+                          <td>{usuario.nombreCompleto}</td>
+                          <td>{usuario.correo}</td>
+                          <td>{usuario.rol}</td>
+                          <td>{usuario.estado}</td>
+                          <td>
+                            <button className="btn btn-primary" onClick={() => mostrarFormularioUsuario(usuario)}>
+                              Cambiar Estado
+                            </button>{" "}
+                            <button className="btn btn-warning" onClick={() => eliminarUsuario(usuario)}>
+                              Borrar
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </Table>
+              </div>
             </>
           )}
         </div>
