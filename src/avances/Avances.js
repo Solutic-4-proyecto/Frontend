@@ -3,6 +3,7 @@ import React from "react";
 import { GET_AVANCES } from "../consultas/qavances";
 
 import { Card, CardTitle, Table } from "reactstrap";
+import Spinner from "../compartidos/componentes/Spinner";
 
 export default function Avances() {
     const { loading, data } = useQuery(GET_AVANCES);
@@ -10,7 +11,7 @@ export default function Avances() {
     return (
         <React.Fragment>
           {loading ? (
-            <p>Cargando Datos...</p>
+            <Spinner />
           ) : (
             <div className="container col-12">
               <div><Card body  color="primary"

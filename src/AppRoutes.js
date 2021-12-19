@@ -2,13 +2,18 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Layout from "./components/Layouts/Layout";
 import roles from "./helpers/roles";
 import AccountPage from "./Pages/AccountPage";
-import Usuarios from "./usuarios/Usuarios";
+
 import HomePage from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import PaginaNoEncontrada from "./Pages/PaginaNoEncontrada";
-import Proyectos from "./Pages/Proyectos";
-import Avances from "./Pages/Avances";
-import Inscripciones from "./Pages/Inscripciones";
+
+import Proyectos from "./proyectos/Proyectos";
+import Inscripciones from "./inscripciones/Inscripciones";
+import Avances from "./avances/Avances";
+import Usuarios from "./usuarios/Usuarios";
+
+
+
 import RegisterPage from "./Pages/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";

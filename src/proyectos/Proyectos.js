@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from 'react'
 import { GET_PROYECTOS } from "../consultas/qproyectos";
 import { Card, CardTitle, Table } from "reactstrap";
+import Spinner from "../compartidos/componentes/Spinner";
 
 
 export default function Proyectos() {
@@ -10,7 +11,7 @@ export default function Proyectos() {
     return (
         <React.Fragment>
           {loading ? (
-            <p>Cargando Datos...</p>
+            <Spinner />
           ) : (
             <div className="container col-12">
               <div><Card body  color="primary" inverse>
