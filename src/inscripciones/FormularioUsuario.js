@@ -1,5 +1,7 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { useCreateUsuario, useUpdateUsuario } from "./custom-hooks";
+import { CREATE_USUARIO, EDIT_USUARIO } from "./graphql-mutations";
+import { GET_USUARIOS } from "./graphql-queries";
 
 export const FormularioUsuario = ({ isUpdate, data }) => {
   const [identificacion, setIdentificacion] = useState(isUpdate ? data.identificacion : "");
@@ -9,8 +11,13 @@ export const FormularioUsuario = ({ isUpdate, data }) => {
   const [rol, setRol] = useState(isUpdate ? data.rol : "Estudiante");
   const [estado, setEstado] = useState(isUpdate ? data.estado : "No Autorizado");
 
-  const [createUsuario] = useCreateUsuario();
-  const [updateUsuario] = useUpdateUsuario();
+  const [createUsuario] = useMutation(CREATE_USUARIO, {
+    refetchQueries: [{ query: GET_USUARIOS }],
+  });
+
+  const [editUsuario] = useMutation(EDIT_USUARIO, {
+    refetchQueries: [{ query: GET_USUARIOS }],
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +32,9 @@ export const FormularioUsuario = ({ isUpdate, data }) => {
     };
 
     if (isUpdate) {
-      updateUsuario({ variables: { _id: data._id, usuario } });
+      editUsuario({ variables: { _id: data._id, usuario } });
     } else {
-      createUsuario({ variables: { usuario } });
+      createUsuario({ variables: { identificacion, nombreCompleto, correo, contrasena, rol, estado } });
       setIdentificacion("");
       setNombreCompleto("");
       setCorreo("");
@@ -49,7 +56,7 @@ export const FormularioUsuario = ({ isUpdate, data }) => {
           <option value="Administrador">Administrador</option>
         </select>
         <select name="estado" value={estado} onChange={(evt) => setEstado(evt.target.value)}>
-          <option value="No Autorizado">No Autorizado</option>
+          <option value=">No Autorizado1">No Autorizado</option>
           <option value="Pendiente">Pendiente</option>
           <option value="Autorizado">Autorizado</option>
         </select>

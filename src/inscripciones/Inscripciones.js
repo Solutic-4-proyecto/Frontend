@@ -1,16 +1,16 @@
-import { useQuery } from "@apollo/client";
 import React from "react";
-import { GET_INSCRIPCIONES } from "../consultas/qinscripciones";
 
-import { Card, CardTitle, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import Spinner from "../compartidos/componentes/Spinner";
-
-
+import HeaderPage from "../compartidos/componentes/HeaderPage";
+import { useGetInscripciones } from "./custom-hooks";
 
 export default function Inscripciones() {
-  const { loading, data } = useQuery(GET_INSCRIPCIONES);
+  const { loading, data } = useGetInscripciones();
 
-
+  const mostrarFormularioUsuario = (usuario) => {
+    console.log("");
+  };
 
   return (
     <React.Fragment>
@@ -18,14 +18,10 @@ export default function Inscripciones() {
         <Spinner />
       ) : (
         <div className="container col-12">
-          <div><Card body  color="primary"
-    inverse>
-            <CardTitle className="text-center">INSCRIPCIONES A PROYECTOS</CardTitle></Card>
-          </div>
+          <HeaderPage name={"Inscripciones"} nombreBoton={"Crear Inscripcion"} actionBoton={mostrarFormularioUsuario} />
           <Table dark>
             <thead>
               <tr>
-                <th>_id</th>
                 <th>ID proyecto</th>
                 <th>ID Estudiante</th>
                 <th>Estado</th>
@@ -45,26 +41,15 @@ export default function Inscripciones() {
                   <td>{inscripciones.fechaIngreso}</td>
                   <td>{inscripciones.fechaEgreso}</td>
                   <td>
-
-                  <button
-                      className="btn btn-primary"
-                      onClick={() => this.deleteFacturas(inscripciones._id)}
-                    >
+                    <button className="btn btn-primary" onClick={() => this.deleteFacturas(inscripciones._id)}>
                       Aprobar
-                    </button> {" "}
-                    <button
-                      className="btn btn-warning"
-                      onClick={() => this.deleteFacturas(inscripciones._id)}
-                    >
+                    </button>{" "}
+                    <button className="btn btn-warning" onClick={() => this.deleteFacturas(inscripciones._id)}>
                       Rechazar
                     </button>{" "}
-                    <button
-                      className="btn btn-success"
-                      onClick={() => this.deleteFacturas(inscripciones._id)}
-                    >
+                    <button className="btn btn-success" onClick={() => this.deleteFacturas(inscripciones._id)}>
                       Ver
                     </button>
-
                   </td>
                 </tr>
               ))}

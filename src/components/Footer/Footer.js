@@ -3,20 +3,16 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-
-    <footer className='fixed-bottom'>
-        
-        <div className='container'>
-            <div className='row text-center'>
-                <div className='col-xs-12'>
-                    <h1 className='text-muted lead'>Solutic 4.0 Desarrollo de Aplicaciones Web Personalizados</h1>
-                    <h6 className='text-muted lead'>Contáctenos</h6>
-                </div>
-            </div>
+    <footer className="bottom">
+      <div className="container">
+        <div className="row text-center">
+          <div className="col-xs-12">
+            <h1 className="text-muted lead">Solutic 4.0 Desarrollo de Aplicaciones Web Personalizados</h1>
+            <h6 className="text-muted lead">Contáctenos</h6>
+          </div>
         </div>
-   </footer>
-
-
+      </div>
+    </footer>
   );
 };
 

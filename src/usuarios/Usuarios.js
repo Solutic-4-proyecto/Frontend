@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { Card, CardTitle, Table } from "reactstrap";
+import { Table } from "reactstrap";
+import HeaderPage from "../compartidos/componentes/HeaderPage";
 import Spinner from "../compartidos/componentes/Spinner";
 import { useGetUsuarios, useDeleteUsuario } from "./custom-hooks";
 import { FormularioUsuario } from "./FormularioUsuario";
@@ -33,33 +34,15 @@ export default function Usuarios() {
         <Spinner />
       ) : (
         <div className="container-xxl">
-          <div className="row w-100 p-4">
-            <div className="container-fluid ">
-              <div className="row">
-                <div class="col-md-6">
-                  <h3>Usuarios</h3>
-                </div>
-                <div class="col-md-5">
-                  <button className="btn btn-primary float-right" onClick={() => mostrarFormularioUsuario()}>
-                    Crear Usuario
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <HeaderPage name={"Usuarios"} nombreBoton={"Crear Usuario"} actionBoton={mostrarFormularioUsuario} />
 
           {(nuevoUsuario || editarUsuario) && (
             <div>
-              <FormularioUsuario data={usuario} />
+              <FormularioUsuario isUpdate={editarUsuario} data={usuario} />
             </div>
           )}
           {!(nuevoUsuario && editarUsuario) && (
             <>
-              <div>
-                <Card title color="primary" inverse>
-                  <CardTitle className="text-center">LISTADO DE USUARIOS</CardTitle>
-                </Card>
-              </div>
               <div className="container-table">
                 <Table dark>
                   <thead>
@@ -84,7 +67,7 @@ export default function Usuarios() {
                           <td>{usuario.estado}</td>
                           <td>
                             <button className="btn btn-primary" onClick={() => mostrarFormularioUsuario(usuario)}>
-                              Cambiar Estado
+                              Editar
                             </button>{" "}
                             <button className="btn btn-warning" onClick={() => eliminarUsuario(usuario)}>
                               Borrar

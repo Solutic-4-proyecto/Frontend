@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import useAuth from "../auth/useAuth";
-import useModal from "../hooks/useModal";
+import useModal from "../compartidos/hooks/useModal";
 import CambiarClaveModal from "./CambiarClaveModal";
 import EditUsuarioModal from "./EditUsuarioModal";
 
