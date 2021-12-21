@@ -3,7 +3,7 @@ import { Modal, Form, Button, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useCreateProyecto } from "./custom-hooks";
 
-import "./style.css";
+import "../compartidos/compartidos-estilos.css";
 
 export default function ProyectoModal({ isOpen, close, proyecto }) {
   const [isUpdate, setIsUpdate] = useState(false);

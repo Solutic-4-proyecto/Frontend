@@ -91,3 +91,7 @@
         box-shadow: inset #00b7c6 0 -2em 0 0, inset #dad8d2 0 -2em 0 0, inset #00b7c6 0 -2em 0 0;
     }
 }
+
+.p-r-50px {
+    padding-right: 50px; 
+}

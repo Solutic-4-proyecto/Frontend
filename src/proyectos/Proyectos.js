@@ -18,7 +18,6 @@ export default function Proyectos() {
   const editarProyecto = ({_id}) => {
       setUpdateProyecto(_id);
       setIsUpdate(true);
-    
   };
 
   const eliminarProyecto = ({ _id }) => {
@@ -57,7 +56,7 @@ export default function Proyectos() {
                   <td>{proyectos.estado}</td>
                   <td>{proyectos.faseProyecto}</td>
                   <td>
-                    <button className="btn btn-primary" onClick={() => editarProyecto(proyectos)}>
+                    <button className="btn btn-primary disabled" onClick={() => {/*editarProyecto(proyectos)*/}}>
                       Editar
                     </button>{" "}
                     <button className="btn btn-warning" onClick={() => eliminarProyecto(proyectos)}>

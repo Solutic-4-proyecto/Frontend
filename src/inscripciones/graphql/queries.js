@@ -4,7 +4,7 @@ export const GET_INSCRIPCIONES = gql`
   query getInscripciones {
     getInscripciones {
       _id
-      idproyecto
+      idProyecto
       identificacionEstudiante
       estado
       fechaIngreso

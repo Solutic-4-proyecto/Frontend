@@ -8,33 +8,34 @@ export default function EditUsuarioModal({ isOpen, close, user }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },reset
-  } = useForm({resolver:editUsuarioResolver});
+    formState: { errors, dirtyFields },
+    reset,
+  } = useForm({ resolver: editUsuarioResolver });
 
-  const { updateUser } = useAuth()
+  const { updateUser } = useAuth();
 
-  const isDirty=!!Object.keys(dirtyFields).length;
+  const isDirty = !!Object.keys(dirtyFields).length;
 
   const onSubmit = (formData) => {
-    if(!isDirty) return;
-    updateUser(formData)
-    close()
+    if (!isDirty) return;
+    updateUser(formData);
+    close();
   };
 
-  useEffect(()=>{
-    if(!isOpen){
-        reset()
+  useEffect(() => {
+    if (!isOpen) {
+      reset();
     }
-  },[isOpen,reset])
+  }, [isOpen, reset]);
 
-  useEffect(()=>{
-    if(user) reset({
-      name:user.name,
-      email:user.email,
-      identificacion:user.identificacion
-    });
-
-  },[user.reset])
+  useEffect(() => {
+    if (user)
+      reset({
+        name: user.name,
+        email: user.email,
+        identificacion: user.identificacion,
+      });
+  }, [user.reset]);
 
   return (
     <Modal show={isOpen} onHide={close}>
@@ -45,11 +46,7 @@ export default function EditUsuarioModal({ isOpen, close, user }) {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Group>
             <Form.Label>Nombre Completo</Form.Label>
-            <Form.Control
-            type="text"
-              placeholder="Ingrese su nombre completo"
-              {...register("name")}
-            />
+            <Form.Control type="text" placeholder="Ingrese su nombre completo" {...register("name")} />
             {errors?.name && (
               <Form.Text>
                 <Alert variant="danger">{errors.name.message}</Alert>
@@ -59,11 +56,7 @@ export default function EditUsuarioModal({ isOpen, close, user }) {
 
           <Form.Group>
             <Form.Label>Identificación</Form.Label>
-            <Form.Control
-            type="text"
-              placeholder="Ingrese su Identificación"
-              {...register("identificacion")}
-            />
+            <Form.Control type="text" placeholder="Ingrese su Identificación" {...register("identificacion")} />
             {errors?.identificacion && (
               <Form.Text>
                 <Alert variant="danger">{errors.identificacion.message}</Alert>
@@ -73,11 +66,7 @@ export default function EditUsuarioModal({ isOpen, close, user }) {
 
           <Form.Group>
             <Form.Label>Correo</Form.Label>
-            <Form.Control
-            type="email"
-              placeholder="Ingrese su Correo Electrónico"
-              {...register("email")}
-            />
+            <Form.Control type="email" placeholder="Ingrese su Correo Electrónico" {...register("email")} />
             {errors?.email && (
               <Form.Text>
                 <Alert variant="danger">{errors.email.message}</Alert>
@@ -90,9 +79,7 @@ export default function EditUsuarioModal({ isOpen, close, user }) {
         <Button variant="secondary" onClick={close}>
           Cancelar
         </Button>
-        <Button variant="primary" onClick={handleSubmit(onSubmit)}
-        disabled={!isDirty}
-        >
+        <Button variant="primary" onClick={handleSubmit(onSubmit)} disabled={!isDirty}>
           Actualizar Información
         </Button>
       </Modal.Footer>

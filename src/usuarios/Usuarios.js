@@ -15,6 +15,8 @@ export default function Usuarios() {
   const [usuario, setUsuario] = useState();
   const [set_id] = useDeleteUsuario();
 
+  const [mostrarFromulario, setMostrarFormulario] = useState(false);
+
   const mostrarFormularioUsuario = (usuario) => {
     if (usuario) {
       setEditarUsuario(!editarUsuario);
@@ -22,6 +24,7 @@ export default function Usuarios() {
     } else {
       setNuevoUsuario(!nuevoUsuario);
     }
+    setMostrarFormulario(!mostrarFromulario);
   };
 
   const eliminarUsuario = ({ _id }) => {
@@ -34,14 +37,13 @@ export default function Usuarios() {
         <Spinner />
       ) : (
         <div className="container-xxl">
-          <HeaderPage name={"Usuarios"} nombreBoton={"Crear Usuario"} actionBoton={mostrarFormularioUsuario} />
-
-          {(nuevoUsuario || editarUsuario) && (
+          <HeaderPage name={"Usuarios"} nombreBoton={editarUsuario ? "Editar Usuario" : "Crear Usuario"} actionBoton={mostrarFormularioUsuario} />
+          {mostrarFromulario && (
             <div>
               <FormularioUsuario isUpdate={editarUsuario} data={usuario} />
             </div>
           )}
-          {!(nuevoUsuario && editarUsuario) && (
+          {
             <>
               <div className="container-table">
                 <Table dark>
@@ -79,7 +81,7 @@ export default function Usuarios() {
                 </Table>
               </div>
             </>
-          )}
+          }
         </div>
       )}
     </React.Fragment>

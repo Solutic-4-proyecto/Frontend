@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_AVANCE = gql`
-  mutation createAvance($avance: avancesInput!) {
+  mutation createAvance($avance: AvancesInput!) {
     createAvance(input: $avance) {
       _id
     }
@@ -9,7 +9,7 @@ export const CREATE_AVANCE = gql`
 `;
 
 export const UPDATE_AVANCE = gql`
-  mutation updateAvance($_id: String!, $avance: avancesInput!) {
+  mutation updateAvance($_id: String!, $avance: AvancesInput!) {
     updateAvance(_id: $_id, input: $avance) {
       _id
     }
